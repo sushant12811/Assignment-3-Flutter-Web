@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GreetingPage extends StatelessWidget {
+  // ignore: use_super_parameters
   const GreetingPage({Key? key}) : super(key: key);
 
   @override
@@ -13,7 +14,7 @@ class GreetingPage extends StatelessWidget {
             "assets/1.avif",
             fit: BoxFit.cover,
             errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-              return Center(
+              return const Center(
                 child: Text(
                   'Image failed to load',
                   style: TextStyle(color: Colors.white, fontSize: 16),
@@ -48,7 +49,7 @@ class GreetingPage extends StatelessWidget {
                     height: 150,
                     errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
                       return const Text(
-                        'Image could not be loaded',
+                        'Image could not be loaded-error',
                         style: TextStyle(color: Colors.white),
                       );
                     },
@@ -56,7 +57,7 @@ class GreetingPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Experience a range of features!',
+                  'Experience features on our flutter app!',
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,

@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class TempPage extends StatefulWidget {
+  // ignore: use_super_parameters
   const TempPage({Key? key}) : super(key: key);
 
   @override
@@ -10,13 +11,13 @@ class TempPage extends StatefulWidget {
 }
 
 class TempPageState extends State<TempPage> {
-  final String _city = 'London';
-  String _temperature = '';
-  String _weatherDescription = '';
-  String _error = '';
+  final String city = 'Barrie';
+  String temperature = '';
+  String weatherDescription = '';
+  String error = '';
 
   // Replace this with your actual API key
-  final _apiKey = '406873bf744ce97d89ab71327c91d6d1';
+  final apiKey = '406873bf744ce97d89ab71327c91d6d1';
 
   @override
   void initState() {
@@ -24,26 +25,28 @@ class TempPageState extends State<TempPage> {
     fetchData();
   }
 
+
+//Url with integrated API key and city name
   Future<void> fetchData() async {
-    final url = 'http://api.openweathermap.org/data/2.5/weather?q=$_city&appid=$_apiKey&units=metric';
+    final url = 'http://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey&units=metric';
 
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         setState(() {
-          _temperature = '${data['main']['temp']}°C';
-          _weatherDescription = data['weather'][0]['description'];
-          _error = '';
+          temperature = '${data['main']['temp']}°C';
+          weatherDescription = data['weather'][0]['description'];
+          error = '';
         });
       } else {
         setState(() {
-          _error = 'Failed to load data. Status code: ${response.statusCode}';
+          error = 'Failed to load data. Status code: ${response.statusCode}';
         });
       }
     } catch (e) {
       setState(() {
-        _error = 'An error occurred: $e';
+        error = 'An error occurred: $e';
       });
     }
   }
@@ -61,23 +64,23 @@ class TempPageState extends State<TempPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'Weather in $_city',
+                'Weather in $city',
                 style: const TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 20),
-              if (_error.isNotEmpty)
+              if (error.isNotEmpty)
                 Text(
-                  _error,
+                  error,
                   style: const TextStyle(color: Colors.red, fontSize: 18),
                 )
-              else if (_temperature.isNotEmpty)
+              else if (temperature.isNotEmpty)
                 Column(
                   children: <Widget>[
                     Text(
-                      _temperature,
+                      temperature,
                       style: const TextStyle(
                         fontSize: 48,
                         fontWeight: FontWeight.bold,
@@ -85,7 +88,7 @@ class TempPageState extends State<TempPage> {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      _weatherDescription,
+                      weatherDescription,
                       style: const TextStyle(fontSize: 24),
                     ),
                   ],
@@ -95,7 +98,8 @@ class TempPageState extends State<TempPage> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: fetchData,
-                child: const Text('Refresh Data'),
+                // ignore: sort_child_properties_last
+                child: const Text('Refresh'),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   textStyle: const TextStyle(fontSize: 18),
