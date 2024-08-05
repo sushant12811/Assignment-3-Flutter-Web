@@ -1,9 +1,8 @@
+import 'package:assignment3/qr_generator.dart';
 import 'package:flutter/material.dart';
 import 'greeting.dart';
 import 'calculator.dart';
-import 'notes.dart';
-import 'api.dart';
-import 'map.dart';
+import 'temp.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -12,12 +11,10 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => GreetingPage());
       case '/calculator':
         return MaterialPageRoute(builder: (_) => CalculatorPage());
-      case '/notes':
-        return MaterialPageRoute(builder: (_) => NotesPage());
-      case '/api':
-        return MaterialPageRoute(builder: (_) => ApiPage());
-      case '/map':
-        return MaterialPageRoute(builder: (_) => MapPage());
+      case '/temp':
+        return MaterialPageRoute(builder: (_) => TempPage());
+      case '/qr':
+        return MaterialPageRoute(builder: (_) => QrGenerator());
       default:
         return MaterialPageRoute(builder: (_) => GreetingPage());
     }
