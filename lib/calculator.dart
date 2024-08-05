@@ -1,78 +1,79 @@
 import 'package:flutter/material.dart';
 
 class CalculatorPage extends StatefulWidget {
+  // ignore: use_super_parameters
   const CalculatorPage({Key? key}) : super(key: key);
 
   @override
-  _CalculatorPageState createState() => _CalculatorPageState();
+  CalculatorPageState createState() => CalculatorPageState();
 }
 
-class _CalculatorPageState extends State<CalculatorPage> {
-  String _display = '0';
-  String _operation = '';
-  double _num1 = 0;
-  double _num2 = 0;
-  bool _isResultDisplayed = false;
-  bool _isOperationSelected = false;
+class CalculatorPageState extends State<CalculatorPage> {
+  String display = '0';
+  String operation = '';
+  double num1 = 0;
+  double num2 = 0;
+  bool isResultDisplayed = false;
+  bool isOperationSelected = false;
 
   void _onButtonPressed(String value) {
     setState(() {
       if (value == 'C') {
-        _display = '0';
-        _num1 = 0;
-        _num2 = 0;
-        _operation = '';
-        _isResultDisplayed = false;
-        _isOperationSelected = false;
+        display = '0';
+        num1 = 0;
+        num2 = 0;
+        operation = '';
+        isResultDisplayed = false;
+        isOperationSelected = false;
       } else if (value == '=') {
-        if (_operation.isNotEmpty) {
-          _num2 = double.tryParse(_display) ?? 0;
-          switch (_operation) {
+        if (operation.isNotEmpty) {
+          num2 = double.tryParse(display) ?? 0;
+          switch (operation) {
             case '+':
-              _display = (_num1 + _num2).toString();
+              display = (num1 + num2).toString();
               break;
             case '-':
-              _display = (_num1 - _num2).toString();
+              display = (num1 - num2).toString();
               break;
             case '*':
-              _display = (_num1 * _num2).toString();
+              display = (num1 * num2).toString();
               break;
             case '/':
-              if (_num2 != 0) {
-                _display = (_num1 / _num2).toString();
+              if (num2 != 0) {
+                display = (num1 / num2).toString();
               } else {
-                _display = 'Error';
+                display = 'Error';
               }
               break;
           }
-          _operation = '';
-          _num1 = double.tryParse(_display) ?? 0;
-          _isResultDisplayed = true;
-          _isOperationSelected = false;
+          operation = '';
+          num1 = double.tryParse(display) ?? 0;
+          isResultDisplayed = true;
+          isOperationSelected = false;
         }
       } else if (['+', '-', '*', '/'].contains(value)) {
-        if (_isResultDisplayed) {
+        if (isResultDisplayed) {
           // After displaying result, start new calculation with the last result
-          _num1 = double.tryParse(_display) ?? 0;
-          _operation = value;
-          _display = _num1.toInt().toString(); // Display the previous number without decimal
-          _isResultDisplayed = false;
-          _isOperationSelected = true;
+          num1 = double.tryParse(display) ?? 0;
+          operation = value;
+          display = num1.toInt().toString();
+          isResultDisplayed = false;
+          isOperationSelected = true;
         } else {
-          _num1 = double.tryParse(_display) ?? 0;
-          _operation = value;
-          _display = _num1.toInt().toString(); // Display the previous number without decimal
-          _isOperationSelected = true;
+          num1 = double.tryParse(display) ?? 0;
+          operation = value;
+          display = num1.toInt().toString(); 
+          isOperationSelected = true;
         }
       } else {
-        if (_display == '0' || _isResultDisplayed) {
-          _display = value;
-          _isResultDisplayed = false;
-        } else if (_isOperationSelected) {
-          _display = value;
-          _isOperationSelected = false;
+        if (display == '0' || isResultDisplayed) {
+          display = value;
+          isResultDisplayed = false;
+        } else if (isOperationSelected) {
+          display = value;
+          isOperationSelected = false;
         } else {
-          _display += value;
+          display += value;
         }
       }
     });
@@ -107,7 +108,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                 alignment: Alignment.centerRight,
                 padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                 child: Text(
-                  _display,
+                  display,
                   style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
