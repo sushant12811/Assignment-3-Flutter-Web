@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'greeting.dart';
 import 'calculator.dart';
-import 'notes.dart';
-import 'api.dart';
-import 'map.dart';
+import 'temp.dart';
+import 'qr_generator.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: Colors.blueAccent,
           unselectedItemColor: Colors.grey,
         ),
@@ -37,9 +36,8 @@ class _HomePageState extends State<HomePage> {
   static const List<Widget> _widgetOptions = <Widget>[
     GreetingPage(),
     CalculatorPage(),
-    ApiPage(),
-    NotesPage(),
-    MapPage(),
+    TempPage(),
+    QrGenerator(), // Added QR code generator page
   ];
 
   void _onItemTapped(int index) {
@@ -68,16 +66,12 @@ class _HomePageState extends State<HomePage> {
             label: 'Calculator',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.api),
-            label: 'API',
+            icon: Icon(Icons.thermostat),
+            label: 'Temp',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.note),
-            label: 'Notes',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            label: 'Map',
+            icon: Icon(Icons.qr_code),
+            label: 'QR',
           ),
         ],
         currentIndex: _selectedIndex,
