@@ -16,7 +16,7 @@ class TempPageState extends State<TempPage> {
   String weatherDescription = '';
   String error = '';
 
-  // Replace this with your actual API key
+  // API key
   final apiKey = '406873bf744ce97d89ab71327c91d6d1';
 
   @override

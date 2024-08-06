@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:qr_bar_code/qr/src/qr_code.dart';
 
+
+
+
+// Define the QrGenerator widget as a StatefulWidget
 class QrGenerator extends StatefulWidget {
   const QrGenerator({super.key});
 

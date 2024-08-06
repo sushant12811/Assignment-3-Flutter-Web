@@ -4,9 +4,13 @@ import 'greeting.dart';
 import 'calculator.dart';
 import 'temp.dart';
 
+
+
+//Route to different page
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    switch (settings.name) {
+    switch (settings.name) 
+    {
       case '/':
         return MaterialPageRoute(builder: (_) => GreetingPage());
       case '/calculator':

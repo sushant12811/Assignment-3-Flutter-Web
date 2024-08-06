@@ -8,6 +8,9 @@ void main() {
   runApp(MyApp());
 }
 
+
+// Define the home page widget as a StatefulWidget
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -25,6 +28,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// Define the state for HomePage
 // ignore: use_key_in_widget_constructors
 class HomePage extends StatefulWidget {
   @override
@@ -34,6 +38,8 @@ class HomePage extends StatefulWidget {
 class HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
+
+  // List of widgets to display based on the selected index
   static const List<Widget> _widgetOptions = <Widget>[
     GreetingPage(),
     CalculatorPage(),
@@ -47,6 +53,8 @@ class HomePageState extends State<HomePage> {
     });
   }
 
+
+  // Function to handle BottomNavigationBar item taps
   @override
   Widget build(BuildContext context) {
     return Scaffold(

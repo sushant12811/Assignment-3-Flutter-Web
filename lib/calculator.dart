@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+// Define the CalculatorPage widget as a StatefulWidget
 class CalculatorPage extends StatefulWidget {
   // ignore: use_super_parameters
   const CalculatorPage({Key? key}) : super(key: key);
@@ -8,6 +10,8 @@ class CalculatorPage extends StatefulWidget {
   CalculatorPageState createState() => CalculatorPageState();
 }
 
+
+// Define the state for CalculatorPage
 class CalculatorPageState extends State<CalculatorPage> {
   String display = '0';
   String operation = '';

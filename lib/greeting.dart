@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Define the GreetingPage widget as a StatelessWidget
 class GreetingPage extends StatelessWidget {
   // ignore: use_super_parameters
   const GreetingPage({Key? key}) : super(key: key);
